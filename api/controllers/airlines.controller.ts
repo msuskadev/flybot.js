@@ -6,9 +6,8 @@ export default class AirlinesController {
 
     }
 
-    public getAirlines(req: Request, res: Response) {
-        const as = new AirlinesService().getAirlines();
-        res.send(as);
+    public async getAirlines(req: Request, res: Response) {
+        res.send(await new AirlinesService().getAirlines());
     }
 
     public getAirlineLogos(req: Request, res: Response) {
