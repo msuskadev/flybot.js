@@ -10,7 +10,9 @@ export default class AirlinesController {
         res.send(await new AirlinesService().getAirlines());
     }
 
-    public getAirlineLogos(req: Request, res: Response) {
-        res.send("logos From controller");
+    public async getAirlineLogos(req: Request, res: Response) {
+        // The method below was used only to get all airline logos - now it should remain commented         
+        // await new AirlinesService().getAirlineLogos();
+        res.send('All logos successfully downloaded');
     }
 }
