@@ -1,5 +1,6 @@
 import fs from "fs";
 import p from "path";
+import axios from "axios";
 
 export default class Files {
     public static writeFile(path: string, data: any) : void {
@@ -13,4 +14,21 @@ export default class Files {
     public static readFile(path: string) : string {
         return fs.readFileSync(path).toString();
     }
+
+    public static async downloadImage (url: string, path: string) : Promise<void> {          
+        const writer = fs.createWriteStream(path);
+      
+        const response = await axios({
+          url,
+          method: 'GET',
+          responseType: 'stream'
+        });
+      
+        response.data.pipe(writer)
+      
+        return new Promise((resolve, reject) => {
+          writer.on('finish', resolve);
+          writer.on('error', reject);
+        });
+      }
 }

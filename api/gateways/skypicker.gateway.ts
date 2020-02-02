@@ -9,7 +9,7 @@ export default class SkypickerGateway {
                 data: response.data,
                 status: response.status,
                 statusText: response.statusText
-            } as GatewayResponse;
+            } as GatewayResponse;            
         } catch (error) {
             console.error(error);     
         }

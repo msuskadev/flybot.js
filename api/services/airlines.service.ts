@@ -20,7 +20,18 @@ export default class AirlineService {
         return airlines;
     }   
 
-    public getAirlineLogos() {
+    public async getAirlineLogos() {
+        const airlines = await this.getAirlines();  
 
+        for (let i = 0; i < airlines.length; i++) {
+            this.delay(100);
+            const id = `${airlines[i].id.trim()}.png`;
+            await Files.downloadImage(`https://images.kiwi.com/airlines/64/${id}`, path.join(__dirname, `../assets/airlines/logos/${id}`));              
+        }
+    }
+
+    private delay(ms: number)
+    {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }
