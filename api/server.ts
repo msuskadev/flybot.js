@@ -1,9 +1,22 @@
 import express from "express";
-const app = express();
+import AirlinesRoutes from "./routes/airlines.route";
 
-const server = app.listen(1111, () => {
-    console.log('Server has been started');
-});
+export default class Server {
+    public app: express.Application;
+    public port: number;
 
-export default server;
+    constructor(port: number) {
+        this.app = express();
+        this.port = port;
+        this.app.use(new AirlinesRoutes().router);
+    }
+
+    public listen() : void {
+        this.app.listen(this.port, () => {
+            console.log(`FlyBot server is listening on port ${this.port}`);
+        });
+    }
+}
+
+new Server(3000).listen();
 
