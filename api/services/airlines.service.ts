@@ -8,8 +8,8 @@ export default class AirlineService {
     private skypickerGateway: SkypickerGateway = new SkypickerGateway();
 
     public async getAirlines() : Promise<AirlineModel[]> {
-        const allAirlines = await this.skypickerGateway.getAirlines();
-        let airlines : AirlineModel[] = []
+        const allAirlines : GatewayResponse | null = await this.skypickerGateway.getAirlines();
+        let airlines : AirlineModel[] = [];
 
         if (allAirlines && allAirlines.status === 200) {
             airlines = (allAirlines.data as AirlineModel[]).filter(a => a.type.toLowerCase() === "airline");              
@@ -21,7 +21,7 @@ export default class AirlineService {
     }   
 
     public async getAirlineLogos() {
-        const airlines = await this.getAirlines();  
+        const airlines : AirlineModel[] = await this.getAirlines();  
 
         for (let i = 0; i < airlines.length; i++) {
             this.delay(100);

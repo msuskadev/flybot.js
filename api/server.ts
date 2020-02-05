@@ -1,5 +1,7 @@
 import express from "express";
+import bodyparser from "body-parser";
 import AirlinesRoutes from "./routes/airlines.route";
+import FlightsRoutes from "./routes/flights.route";
 
 export default class Server {
     public app: express.Application;
@@ -8,7 +10,10 @@ export default class Server {
     constructor(port: number) {
         this.app = express();
         this.port = port;
+        this.app.use(bodyparser.json());    
+        this.app.use(bodyparser.urlencoded({ extended: true }));
         this.app.use(new AirlinesRoutes().router);
+        this.app.use(new FlightsRoutes().router);
     }
 
     public listen() : void {
