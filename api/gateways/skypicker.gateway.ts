@@ -18,9 +18,10 @@ export default class SkypickerGateway {
         return null;
     }
     
-    public async basicFlightsSearch(flightModel: FlightModel) : Promise<GatewayResponse | null> {
+    public async flightsSearch(flightModel: FlightModel) : Promise<GatewayResponse | null> {
         try {
-            const response: AxiosResponse = await axios.get(`https://api.skypicker.com/flights?fly_from=${flightModel.flyFrom}&fly_to=${flightModel.flyTo}&date_from=${flightModel.dateFrom}&date_to=${flightModel.dateTo}&curr=pln&partner=picky&v=3`)
+            const url = `https://api.skypicker.com/flights?fly_from=${flightModel.flyFrom}&fly_to=${flightModel.flyTo}&date_from=${flightModel.dateFrom}&date_to=${flightModel.dateTo}&adults=${flightModel.adults}&children=${flightModel.children}&infants=${flightModel.infants}&flight_type=${flightModel.flightType}&max_stopovers=${flightModel.maxStepOvers}&curr=pln&partner=picky&v=3&sort=${flightModel.sort}`;
+            const response: AxiosResponse = await axios.get(url)
             return {
                 data: response.data,
                 status: response.status,

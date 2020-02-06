@@ -7,15 +7,14 @@ import RouteModel from "../models/route.model";
 export default class FlightsService {
     private skypickerGateway: SkypickerGateway = new SkypickerGateway();
 
-    public async basicFlightsSearch(flightModel: FlightModel) : Promise<any[]> {
-        const response = await this.skypickerGateway.basicFlightsSearch(flightModel);
-        const result = this.mapTrips(response);
-        return Promise.resolve([]); 
-    }
+    public async flightsSearch(flightModel: FlightModel) : Promise<TripModel[]> {
+        const response = await this.skypickerGateway.flightsSearch(flightModel);        
+        return Promise.resolve(this.mapTrips(response)); 
+    }    
 
-    private mapTrips(response: GatewayResponse | null) : TripModel[] | null {
+    private mapTrips(response: GatewayResponse | null) : TripModel[] {
         if (!response || !response.data) {
-            return null;
+            return [];
         }
 
         const trips : TripModel[] = [];
@@ -52,6 +51,7 @@ export default class FlightsService {
         for (let i = 0; i < tripRoute.length; i++) {
             route.push({
                 airline: tripRoute[i].airline,
+                airlineLogo: `https://images.kiwi.com/airlines/64/${tripRoute[i].airline}.png`,
                 cityFrom: tripRoute[i].cityFrom,
                 cityTo: tripRoute[i].cityTo,
                 flyFrom: tripRoute[i].flyFrom,

@@ -8,7 +8,6 @@ export default class FlightsRoutes {
 
     constructor () {
         this.router = express.Router();
-        this.router.post(`${this.Path}/basicsearch`, this.flightsController.basicFlightsSearch);
-        //this.router.get(`${this.Path}/logos`, this.airlinesController.getAirlineLogos);
+        this.router.post(`${this.Path}/search`, this.flightsController.flightsSearch);        
     }
 }
