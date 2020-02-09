@@ -1,7 +1,7 @@
 {
   "name": "simple-echobot",
   "version": "1.0.0",
-  "description": "The echobot written by using Microsoft Bot Framework demonstrated during Capgemini TechTalk III Special Edition in Wroclaw",
+  "description": "The simple echobot written by using Microsoft Bot Framework demonstrated during Capgemini TechTalk III Special Edition in Wroclaw",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
