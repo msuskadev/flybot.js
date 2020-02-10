@@ -4,7 +4,8 @@
   "description": "REST API service for flybot.js",
   "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "npm run build && node ./dist/server.js"
   },
   "author": "Mieczyslaw Suska (msuskadev)",
   "license": "MIT",
