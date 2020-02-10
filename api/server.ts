@@ -23,5 +23,5 @@ export default class Server {
     }
 }
 
-new Server(3000).listen();
+new Server(3500).listen();
 
