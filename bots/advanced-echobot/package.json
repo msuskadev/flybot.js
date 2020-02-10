@@ -4,7 +4,8 @@
   "description": "The advanced echobot written by using Microsoft Bot Framework demonstrated during Capgemini TechTalk III Special Edition in Wroclaw",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "npm run build && node ./dist/server.js"
   },
   "repository": {
     "type": "git",
