@@ -17,7 +17,7 @@ export class EchoBot extends ActivityHandler {
                 return;
             }
 
-            const welcomeText = 'Hello and welcome!';
+            const welcomeText = 'Hello and welcome to TechTalk Special Edition!';
             for (const member of membersAdded) {
                 if (member.id !== context.activity.recipient.id) {
                     await context.sendActivity(MessageFactory.text(welcomeText, welcomeText));
