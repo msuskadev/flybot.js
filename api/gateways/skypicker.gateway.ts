@@ -17,7 +17,7 @@ export default class SkypickerGateway {
 
         return null;
     }
-    
+
     public async flightsSearch(flightModel: FlightModel) : Promise<GatewayResponse | null> {
         try {
             const url = `https://api.skypicker.com/flights?fly_from=${flightModel.flyFrom}&fly_to=${flightModel.flyTo}&date_from=${flightModel.dateFrom}&date_to=${flightModel.dateTo}&adults=${flightModel.adults}&children=${flightModel.children}&infants=${flightModel.infants}&flight_type=${flightModel.flightType}&max_stopovers=${flightModel.maxStepOvers}&curr=pln&partner=picky&v=3&sort=${flightModel.sort}`;

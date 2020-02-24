@@ -9,8 +9,6 @@ RUN npm install
 RUN npm install typescript -g
 RUN npm run build
 
-COPY /assets /src/app/dist/assets
-
-EXPOSE 3500
+EXPOSE 3990
 
 CMD ["node", "/src/app/dist/server.js"]

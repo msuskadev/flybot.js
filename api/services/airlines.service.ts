@@ -3,6 +3,7 @@ import SkypickerGateway from "../gateways/skypicker.gateway";
 import GatewayResponse from "../models/gateway-response.model";
 import Files from "../utils/files";
 import path from "path";
+import Airlines from "../assets/airlines/airlines.json";
 
 export default class AirlineService {
     private skypickerGateway: SkypickerGateway = new SkypickerGateway();
@@ -19,6 +20,11 @@ export default class AirlineService {
 
         return airlines;
     }   
+
+    public getAirlineDetails(airlineId: string) : AirlineModel | null {
+        const airline = Airlines.find(a => a.id === airlineId);        
+        return airline ?? null;        
+    }
 
     public async getAirlineLogos() {
         const airlines : AirlineModel[] = await this.getAirlines();  
