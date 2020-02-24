@@ -3,6 +3,7 @@ import SkypickerGateway from "../gateways/skypicker.gateway";
 import GatewayResponse from "../models/gateway-response.model";
 import TripModel from "../models/trip.model";
 import RouteModel from "../models/route.model";
+import AirlineService from "./airlines.service";
 
 export default class FlightsService {
     private skypickerGateway: SkypickerGateway = new SkypickerGateway();
@@ -24,6 +25,7 @@ export default class FlightsService {
             trips.push(
                 {
                     flightDuration: item.fly_duration,
+                    flightDurationNumber: item.aTimeUTC - item.dTimeUTC,
                     distance: item.distance,
                     cityFrom: item.cityFrom,
                     flyFrom: item.flyFrom,
@@ -46,12 +48,14 @@ export default class FlightsService {
         if (!tripRoute) {
             return [];
         }
-
+        const airlineService = new AirlineService();
         const route : RouteModel[] = [];
         for (let i = 0; i < tripRoute.length; i++) {
             route.push({
-                airline: tripRoute[i].airline,
+                airlineCode: tripRoute[i].airline,
+                airlineName: airlineService.getAirlineDetails(tripRoute[i].airline)?.name,
                 airlineLogo: `https://images.kiwi.com/airlines/64/${tripRoute[i].airline}.png`,
+                airlineLogoSmall: `https://images.kiwi.com/airlines/32x32/${tripRoute[i].airline}.png`,
                 cityFrom: tripRoute[i].cityFrom,
                 cityTo: tripRoute[i].cityTo,
                 flyFrom: tripRoute[i].flyFrom,

@@ -1,8 +1,8 @@
 export default interface RouteModel {
     airlineCode: string,
-    airlineName?: string,
+    airlineName: string,
     airlineLogo: string,
-    airlineLogoSmall: string
+    airlineLogoSmall: string,
     arrivalTimeUTC: number,
     departureTimeUTC: number,
     cityFrom: string,

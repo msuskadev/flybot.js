@@ -5,7 +5,7 @@ import { resolve } from 'path';
 import { FlyBot } from './bot/flybot';
 
 config({ path: resolve(__dirname, '..', '.env') })
-const echoBotPort = process.env.EchoBotPort || 3900; 
+const simpleFlyBotPort = process.env.SimpleFlyBotPort || 3900; 
 const server = resify.createServer();
 
 const adapter = new BotFrameworkAdapter({
@@ -20,6 +20,6 @@ server.post('/api/messages', (req, res) => {
     });
 });
 
-server.listen(process.env.EchoBotPort, () => {
-    console.log(`Server is listening on port ${echoBotPort}`);
+server.listen(process.env.SimpleFlyBotPort, () => {
+    console.log(`Server is listening on port ${simpleFlyBotPort}`);
 });

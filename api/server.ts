@@ -6,6 +6,7 @@ import CountriesRoutes from "./routes/countries.route";
 import FlightsRoutes from "./routes/flights.route";
 
 export default class Server {
+    private readonly apiVersion = '/api/v1';
     public app: express.Application;
     public port: number;
 
@@ -13,11 +14,11 @@ export default class Server {
         this.app = express();
         this.port = port;
         this.app.use(bodyparser.json());    
-        this.app.use(bodyparser.urlencoded({ extended: true }));
-        this.app.use(new AirlinesRoutes().router);
-        this.app.use(new AirportsRoutes().router);
-        this.app.use(new CountriesRoutes().router);
-        this.app.use(new FlightsRoutes().router);
+        this.app.use(bodyparser.urlencoded({ extended: true }));        
+        this.app.use(this.apiVersion, new AirlinesRoutes().router);
+        this.app.use(this.apiVersion, new AirportsRoutes().router);
+        this.app.use(this.apiVersion, new CountriesRoutes().router);
+        this.app.use(this.apiVersion, new FlightsRoutes().router);
     }
 
     public listen() : void {
