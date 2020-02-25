@@ -42,7 +42,7 @@ export class FlyBot extends ActivityHandler {
                 return;
             }
 
-            const welcomeText = 'Welcome! Enjoy using Simple Flybot!';
+            const welcomeText = 'Welcome! Enjoy using Flybot!';
             for (const member of membersAdded) {
                 if (member.id !== context.activity.recipient.id) {
                     await context.sendActivity(MessageFactory.text(welcomeText, welcomeText));
