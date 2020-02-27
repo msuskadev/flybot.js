@@ -1,5 +1,5 @@
 {
-    "compilerOptions": {      
+    "compilerOptions": {
       "incremental": true,
       "esModuleInterop": true,
       "target": "ES2017", 

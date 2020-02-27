@@ -5,7 +5,7 @@ import TripModel from '../models/trip.model';
 import FlightModel from '../models/flight.model';
 import MessageFormatter from '../utils/message-formatter';
 
-export class FlyBot extends ActivityHandler {
+export class BasicFlyBot extends ActivityHandler {
     private flybotService: FlyBotService; 
     
     constructor() {
@@ -34,24 +34,7 @@ export class FlyBot extends ActivityHandler {
                 await context.sendActivity(MessageFactory.text('Cannot find flights. Invalid parameters'));
             }
             await next();
-        });
-
-        this.onMembersAdded(async (context, next) => {
-            const membersAdded = context.activity.membersAdded;
-            if (!membersAdded) {
-                return;
-            }
-
-            const welcomeText = 'Welcome! Enjoy using Flybot!';
-            for (const member of membersAdded) {
-                if (member.id !== context.activity.recipient.id) {
-                    await context.sendActivity(MessageFactory.text(welcomeText, welcomeText));
-                }
-            }
-
-            // By calling next() you ensure that the next BotHandler is run.
-            await next();
-        });
+        });        
     }
 
     private preparePlacenotFoundAnswer(place: string) : string {        
