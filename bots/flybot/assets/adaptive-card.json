@@ -1,0 +1,174 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.0",
+  "type": "AdaptiveCard",
+  "body": [
+      {
+          "type": "TextBlock",
+          "text": "Flight",
+          "weight": "bolder"
+      },
+      {
+          "type": "ColumnSet",
+          "separator": true,
+          "columns": [
+              {
+                  "type": "Column",
+                  "width": 2,
+                  "items": [
+                      {
+                          "type": "TextBlock",
+                          "text": "{cityFrom}",
+                          "size": "Small",
+                          "isSubtle": true,
+                          "horizontalAlignment": "Left"
+                      },
+                      {
+                          "type": "TextBlock",
+                          "text": "{countryFromName}",
+                          "size": "Small",
+                          "isSubtle": true,
+                          "horizontalAlignment": "Left"
+                      }
+
+                  ]
+              },              
+              {
+                  "type": "Column",
+                  "width": 2,
+                  "items": [
+                      {
+                          "type": "TextBlock",
+                          "text": "{cityTo}",
+                          "size": "Small",
+                          "isSubtle": true,
+                          "horizontalAlignment": "Right"
+                      },
+                      {
+                          "type": "TextBlock",
+                          "text": "{countryToName}",
+                          "size": "Small",
+                          "isSubtle": true,
+                          "horizontalAlignment": "right"
+                      }
+                  ]
+              }
+          ]
+      },
+      {
+          "type": "ColumnSet",
+          "columns": [
+              {
+                  "type": "Column",
+                  "width": 2,
+                  "items": [                      
+                      {
+                          "type": "TextBlock",
+                          "size": "ExtraLarge",
+                          "color": "Accent",
+                          "text": "{flyFrom}",
+                          "spacing": "None",
+                          "horizontalAlignment": "left"
+                      }
+                  ]
+              },
+              {
+                  "type": "Column",
+                  "width": "1",
+                  "items": [                      
+                      {
+                          "type": "Image",
+                          "url": "http://adaptivecards.io/content/airplane.png",
+                          "size": "small",
+                          "horizontalAlignment": "center"
+                      }                        
+                  ]
+              },
+              {
+                  "type": "Column",
+                  "width": 2,
+                  "items": [                      
+                      {
+                          "type": "TextBlock",
+                          "size": "ExtraLarge",
+                          "color": "Accent",
+                          "text": "{flyTo}",                          
+                          "horizontalAlignment": "Right"
+                      }
+                  ]
+              }
+          ]
+      },
+      {
+          "type": "TextBlock",
+          "text": "{flightDuration} / {distance} km",
+          "size": "Small",
+          "horizontalAlignment": "Center"
+      },
+      {
+          "type": "TextBlock",
+          "text": "{numberOfStops}",
+          "weight": "Bolder",
+          "spacing": "Medium"
+      },
+      {
+          "type": "Container",
+          "separator": true,
+          "items": [
+              {
+                  "id": "ROUTES",
+                  "type": "Container",
+                  "verticalContentAlignment": "Center",
+                  "items": []
+              }
+          ]
+      },
+      {
+          "type": "ColumnSet",
+          "separator": true,
+          "spacing": "Medium",
+          "columns": [
+              {
+                  "type": "Column",
+                  "width": "1",
+                  "items": [
+                      {
+                          "type": "TextBlock",
+                          "text": "Total Price:",
+                          "size": "Medium",
+                          "isSubtle": true
+                      }
+                  ]
+              },
+              {
+                  "type": "Column",
+                  "width": "1",
+                  "items": [
+                      {
+                          "type": "TextBlock",
+                          "horizontalAlignment": "Right",
+                          "text": "{pricePln} PLN",
+                          "size": "Medium",
+                          "weight": "Bolder"
+                      },
+                      {
+                        "type": "TextBlock",
+                        "horizontalAlignment": "Right",
+                        "text": "{priceEur} EUR",
+                        "size": "Medium",
+                        "weight": "Bolder"
+                    }
+                  ]
+              }
+          ]
+      }
+  ],
+  "actions": [
+      {
+          "type": "Action.OpenUrl",
+          "title": "Book ticket",
+          "url": "{bookingLink}",
+          "style": "positive"
+      }
+  ]
+}

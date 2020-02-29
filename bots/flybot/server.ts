@@ -44,10 +44,11 @@ server.post('/api/messages', (req, res) => {
         if (context.activity.type === ActivityTypes.Message) {
             // simple decision tree - for the demo purpose, don't judge me :-) 
            // if (dialogBotQuestions.includes(context.activity.text.toLowerCase())) {
+               // return await dialogFlyBot.run(context);
+           // } else {
                 return await dialogFlyBot.run(context);
-           /* } else {
-                return await basicFlyBot.run(context);
-            }*/            
+                //return await basicFlyBot.run(context);
+           // }            
         } else if (context.activity.type === ActivityTypes.ConversationUpdate) {
             return await welcomeFlyBot.run(context);
         }

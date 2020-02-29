@@ -1,5 +1,4 @@
-import Moment from 'moment';
-import { InputHints, MessageFactory, StatePropertyAccessor, TurnContext } from 'botbuilder';
+import { AttachmentLayoutTypes, CardFactory, MessageFactory, StatePropertyAccessor, TurnContext } from 'botbuilder';
 import {
     ChoiceFactory,
     ChoicePrompt,
@@ -11,17 +10,17 @@ import {
     DialogState,
     DialogTurnResult,
     DialogTurnStatus,
-    PromptValidator,
     PromptValidatorContext,
     TextPrompt,
     WaterfallDialog,
     WaterfallStepContext,
-    ThisMemoryScope,
     ConfirmPrompt
 } from 'botbuilder-dialogs';
 import FlyBotService from "../services/flybot.service";
 import FlightModel from '../models/flight.model';
 import moment from 'moment';
+import CardFormatter from '../utils/card-formatter';
+import TripHelper from '../utils/trip-helper';
 
 const SEARCH_FLIGHTS_DIALOG = 'SEARCH_FLIGHTS_DIALOG';
 const WATERFALL_SEARCH_FLIGHTS_DIALOG = 'WATERFALL_SEARCH_FLIGHTS_DIALOG';
@@ -32,7 +31,6 @@ const TRAVEL_DATE = 'TRAVEL_DATE';
 const TRAVEL_ALONE_OR_WITH_FF_CHOICE = 'TRAVEL_ALONE_OR_WITH_FF_CHOICE';
 const NUMBER_OF_ADULTS = 'NUMBER_OF_ADULTS';
 const NUMBER_OF_CHILDREN = 'NUMBER_OF_CHILDREN';
-const NUMBER_OF_INFANTS = 'NUMBER_OF_INFANTS';
 const CONFIRM_PROMPT = 'CONFIRM_PROMPT';
 
 export class SearchFlightsDialog extends ComponentDialog {
@@ -79,14 +77,14 @@ export class SearchFlightsDialog extends ComponentDialog {
 
     private async getArrivalAirport(step: WaterfallStepContext) : Promise<DialogTurnResult> {
         const flight = step.options as FlightModel;
-        flight.flyFrom = step.result;
+        flight.flyFrom = step.result.toUpperCase();
 
         return await step.prompt(FLY_FROM_TEXT, 'Where would you like to arrive at? (IATA Airport Code or Country Code)');
     }
 
     private async choiceTravelDate(step: WaterfallStepContext) : Promise<DialogTurnResult>{
         const flight = step.options as FlightModel;
-        flight.flyTo = step.result;
+        flight.flyTo = step.result.toUpperCase();
 
         return await step.prompt(TRAVEL_DATE_CHOICE, {
             choices: ChoiceFactory.toChoices(['Today', 'Tomorrow', 'Other Date']),
@@ -145,9 +143,31 @@ export class SearchFlightsDialog extends ComponentDialog {
 
     private async finalStep(step: WaterfallStepContext) : Promise<DialogTurnResult>{
         if (step.result) {
-            await step.context.sendActivity(JSON.stringify(step.options as FlightModel));
+            await step.context.sendActivities([
+                { type: 'typing' }]);
+
+            const allFlights = await new FlyBotService().searchFlights(step.options as FlightModel);        
+            await step.context.sendActivity({
+                attachmentLayout: AttachmentLayoutTypes.Carousel,
+                attachments: [
+                    CardFactory.animationCard("Fastest flights", ["https://media.giphy.com/media/PkLrYFJT9KVwkkvpjO/giphy.gif"]),
+                    ...CardFormatter.format(TripHelper.getFastestFlights(allFlights))
+                ]
+            });
+
+            await step.context.sendActivity({
+                attachmentLayout: AttachmentLayoutTypes.Carousel,
+                attachments: [
+                    CardFactory.animationCard("Cheapest flights", ["https://media3.giphy.com/media/GmaV9oet9MAmI/giphy.gif?cid=790b7611bfa93e75268721dd0d1f7c1645b7f292098a1983&rid=giphy.gif"]),
+                    ...CardFormatter.format(TripHelper.getCheapestFlights(allFlights))
+                ]
+            });
         }
         
+        await step.context.sendActivities([
+            MessageFactory.text('Enjoy your trip! Safe flight!')
+        ]);
+
         //this.conversationData.activeDialog = '';
         return await step.endDialog();
     }
@@ -155,7 +175,7 @@ export class SearchFlightsDialog extends ComponentDialog {
     private async airportCountryCodeValidator(promptContext: PromptValidatorContext<string>) : Promise<boolean> {
         let result: boolean = false;
         if (promptContext.recognized.value?.length === 2 || promptContext.recognized.value?.length === 3) {
-            result = await new FlyBotService().validatePlace(promptContext.recognized.value);            
+            result = await new FlyBotService().validatePlace(promptContext.recognized.value.toUpperCase());            
         }
         if (!result) {
             promptContext.options.prompt = "Incorrect value! Please enter IATA airport code ex. WRO, JFK or country code ex. PL, DE or US";
@@ -168,7 +188,7 @@ export class SearchFlightsDialog extends ComponentDialog {
     private async dateTimePromptValidator(promptContext: PromptValidatorContext<DateTimeResolution[]>): Promise<boolean> {
         let result: boolean = false;
         if (promptContext.recognized.succeeded && promptContext.recognized.value) {                        
-            result = Moment(promptContext.recognized.value[0].value).isValid();
+            result = moment(promptContext.recognized.value[0].value).isValid();
         }
         
         if (!result) {
@@ -180,7 +200,7 @@ export class SearchFlightsDialog extends ComponentDialog {
     }
 
     private prepareConfirmationText(flight: FlightModel) : string {
-        let message = `Please confirm you want to travel from ${flight.flyFrom} to ${flight.flyTo} on ${flight.dateTo}.`;
+        let message = `Please confirm you want to travel from ${flight.flyFrom.toUpperCase()} to ${flight.flyTo.toUpperCase()} on ${flight.dateTo}.`;
         
         if (flight.adults && flight.adults > 1) {
             message += ` You need ${flight.adults + (flight.children ? flight.children : 0) } tickets for ${flight.adults} adults and ${flight.children} children`;  
@@ -188,4 +208,6 @@ export class SearchFlightsDialog extends ComponentDialog {
         
         return message;
     }
+
+    
 }
