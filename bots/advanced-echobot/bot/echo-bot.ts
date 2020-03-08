@@ -6,8 +6,9 @@ export class EchoBot extends ActivityHandler {
         
         this.onMessage(async (context, next) => {
             const replyText = `Advanced echo: ${ context.activity.text }`;
-            await context.sendActivity(MessageFactory.text(replyText, replyText));
-            // By calling next() you ensure that the next BotHandler is run.
+            await context.sendActivity(MessageFactory.text(replyText));
+            // Call the next continuation function from each handler to allow processing to continue. 
+            // If next is not called, processing of the activity ends.
             await next();
         });
 
@@ -16,7 +17,6 @@ export class EchoBot extends ActivityHandler {
             if (!membersAdded) {
                 return;
             }
-
             const welcomeText = 'Hello and welcome to TechTalk Special Edition!';
             for (const member of membersAdded) {
                 if (member.id !== context.activity.recipient.id) {
@@ -24,7 +24,8 @@ export class EchoBot extends ActivityHandler {
                 }
             }
 
-            // By calling next() you ensure that the next BotHandler is run.
+            // Call the next continuation function from each handler to allow processing to continue. 
+            // If next is not called, processing of the activity ends.
             await next();
         });
     }
