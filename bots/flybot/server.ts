@@ -5,6 +5,7 @@ import { resolve } from 'path';
 import { BasicFlyBot } from './bots/basic-flybot';
 import { WelcomeFlyBot } from './bots/welcome-flybot';
 import { DialogFlyBot } from './bots/dialog-flybot';
+import DialogPropertiesModel from './models/dialog-properties.model';
 
 config({ path: resolve(__dirname, '..', '.env') });
 const flyBotPort = process.env.FlyBotPort || 3900; 
@@ -40,15 +41,15 @@ const dialogFlyBot = new DialogFlyBot(conversationState, userState);
 const welcomeFlyBot = new WelcomeFlyBot();
 
 server.post('/api/messages', (req, res) => {
-    adapter.processActivity(req, res, async (context) => { 
+    adapter.processActivity(req, res, async (context) => {
         if (context.activity.type === ActivityTypes.Message) {
+            const dialogState = (await conversationState.load(context)).DialogProperties as DialogPropertiesModel;
             // simple decision tree - for the demo purpose, don't judge me :-) 
-           // if (dialogBotQuestions.includes(context.activity.text.toLowerCase())) {
-               // return await dialogFlyBot.run(context);
-           // } else {
+            if ((dialogState && dialogState.active) || dialogBotQuestions.includes(context.activity.text.toLowerCase())) {
                 return await dialogFlyBot.run(context);
-                //return await basicFlyBot.run(context);
-           // }            
+            } else {
+                return await basicFlyBot.run(context);
+            }            
         } else if (context.activity.type === ActivityTypes.ConversationUpdate) {
             return await welcomeFlyBot.run(context);
         }

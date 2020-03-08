@@ -14,7 +14,7 @@ const adapter = new BotFrameworkAdapter({
 
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async (context) => { 
-        context.sendActivity(`Echo: ${context.activity.text}`);
+        await context.sendActivity(`Echo: ${context.activity.text}`);
     });
 });
 

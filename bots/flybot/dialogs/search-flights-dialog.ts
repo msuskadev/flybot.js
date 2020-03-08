@@ -1,4 +1,4 @@
-import { AttachmentLayoutTypes, CardFactory, MessageFactory, StatePropertyAccessor, TurnContext } from 'botbuilder';
+import { AttachmentLayoutTypes, CardFactory, MessageFactory, StatePropertyAccessor, TurnContext, ConversationState } from 'botbuilder';
 import {
     ChoiceFactory,
     ChoicePrompt,
@@ -18,6 +18,7 @@ import {
 } from 'botbuilder-dialogs';
 import FlyBotService from "../services/flybot.service";
 import FlightModel from '../models/flight.model';
+import DialogPropertiesModel from '../models/dialog-properties.model';
 import moment from 'moment';
 import CardFormatter from '../utils/card-formatter';
 import TripHelper from '../utils/trip-helper';
@@ -34,6 +35,8 @@ const NUMBER_OF_CHILDREN = 'NUMBER_OF_CHILDREN';
 const CONFIRM_PROMPT = 'CONFIRM_PROMPT';
 
 export class SearchFlightsDialog extends ComponentDialog {
+    private dialogProperties!: DialogPropertiesModel;
+
     constructor() {
         super(SEARCH_FLIGHTS_DIALOG);
 
@@ -60,13 +63,15 @@ export class SearchFlightsDialog extends ComponentDialog {
         this.initialDialogId = WATERFALL_SEARCH_FLIGHTS_DIALOG;
     }
 
-    public async run(context: TurnContext, accessor: StatePropertyAccessor<DialogState>) {
+    public async run(context: TurnContext, accessor: StatePropertyAccessor<DialogState>, dialogProperties: StatePropertyAccessor<DialogPropertiesModel>) {
         const dialogSet = new DialogSet(accessor);
         dialogSet.add(this);
 
+        this.dialogProperties = await dialogProperties.get(context, { active: false });
         const dialogContext = await dialogSet.createContext(context);
         const results = await dialogContext.continueDialog();
         if (results.status === DialogTurnStatus.empty) {
+            this.dialogProperties.active = true; 
             await dialogContext.beginDialog(this.id);
         }
     }
@@ -168,7 +173,7 @@ export class SearchFlightsDialog extends ComponentDialog {
             MessageFactory.text('Enjoy your trip! Safe flight!')
         ]);
 
-        //this.conversationData.activeDialog = '';
+        this.dialogProperties.active = false;
         return await step.endDialog();
     }
 
