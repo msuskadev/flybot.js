@@ -16,6 +16,8 @@ const dialogBotQuestions = [
     'search flights',
     'find flight',
     'find flights',
+    'search domestic flight',
+    'search domestic flights'
 ];
 
 // Define a state store for your bot. See https://aka.ms/about-bot-state to learn more about using MemoryStorage.
