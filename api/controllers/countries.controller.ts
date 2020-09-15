@@ -12,4 +12,16 @@ export default class CountriesController {
 
         return res.status(400).send(`Country ${countryCode} doesn't exist`);
     }
+
+    public async getAllCountries(req: Request, res: Response) {
+        const countries = new CountryService().getAllCountries();
+        
+        if (countries) {
+            return res.send(countries);
+        }
+
+        return res.status(400).send(`Cannot get all countries`);
+    }
+
+    
 }
