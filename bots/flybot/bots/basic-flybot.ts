@@ -1,11 +1,11 @@
 import { ActivityHandler, MessageFactory, EndOfConversationCodes, Activity } from 'botbuilder';
 import DataExtractor from '../utils/data-extractor';
 import FlyBotService from '../services/flybot.service';
-import TripModel from '../models/trip.model';
 import FlightModel from '../models/flight.model';
 import MessageFormatter from '../utils/message-formatter';
+import TripHelper from '../utils/trip-helper';
 
-export class FlyBot extends ActivityHandler {
+export class BasicFlyBot extends ActivityHandler {
     private flybotService: FlyBotService; 
     
     constructor() {
@@ -29,29 +29,15 @@ export class FlyBot extends ActivityHandler {
                     await context.sendActivities([
                         ...await this.searchFlights(flight)
                     ]);
+                    await context.sendActivities([
+                        MessageFactory.text('Enjoy your trip! Safe flight!')
+                    ]);
                 }            
             } else {
                 await context.sendActivity(MessageFactory.text('Cannot find flights. Invalid parameters'));
             }
             await next();
-        });
-
-        this.onMembersAdded(async (context, next) => {
-            const membersAdded = context.activity.membersAdded;
-            if (!membersAdded) {
-                return;
-            }
-
-            const welcomeText = 'Welcome! Enjoy using Simple Flybot!';
-            for (const member of membersAdded) {
-                if (member.id !== context.activity.recipient.id) {
-                    await context.sendActivity(MessageFactory.text(welcomeText, welcomeText));
-                }
-            }
-
-            // By calling next() you ensure that the next BotHandler is run.
-            await next();
-        });
+        });        
     }
 
     private preparePlacenotFoundAnswer(place: string) : string {        
@@ -61,16 +47,7 @@ export class FlyBot extends ActivityHandler {
     private async searchFlights(flight: FlightModel): Promise<Partial<Activity>[]> {
         const allFlights = await this.flybotService.searchFlights(flight);
 
-        return [MessageFactory.text("# **FASTEST FLIGHTS:** " + MessageFormatter.format(this.getFastestFlights(allFlights))),
-                MessageFactory.text("# **CHEAPEST FLIGHTS:** " + MessageFormatter.format(this.getCheapestFlights(allFlights)))];
+        return [MessageFactory.text("# **FASTEST FLIGHTS:** " + MessageFormatter.format(TripHelper.getFastestFlights(allFlights))),
+                MessageFactory.text("# **CHEAPEST FLIGHTS:** " + MessageFormatter.format(TripHelper.getCheapestFlights(allFlights)))];
     }
-
-    private getFastestFlights(trips: TripModel[]) : TripModel[] {
-        return trips.sort((a, b) => a.flightDurationNumber > b.flightDurationNumber ? 1 : a.flightDurationNumber < b.flightDurationNumber? -1 : 0).slice(0, 5);
-    }
-    
-    private getCheapestFlights(trips: TripModel[]) : TripModel[] {
-        return trips.sort((a, b) => a.pricePln > b.pricePln ? 1 : a.pricePln < b.pricePln? -1 : 0).slice(0, 5);
-    }
-
 }

@@ -1,0 +1,107 @@
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.2",
+    "body": [                
+        {
+            "type": "TextBlock",
+            "text": "Domestic departure airport:",
+            "horizontalAlignment": "left"
+        },
+        {
+            "type": "Input.ChoiceSet",
+            "id": "DepartureAirport",
+            "choices": [],
+            "separator": false
+        },
+        {
+            "type": "TextBlock",
+            "text": "Domestic arrival airport:",
+            "horizontalAlignment": "left"
+        },
+        {
+            "type": "Input.ChoiceSet",
+            "id": "ArrivalAirport",
+            "choices": [],
+            "separator": false
+        },
+        {
+            "type": "TextBlock",
+            "text": "Select travel date:"
+        },
+        {
+            "type": "Input.Date",
+            "placeholder": "Date",
+            "id": "TravelDate",
+            "value": "{DATE-TODAY}",
+            "min": "{DATE-MIN}",
+            "max": "{DATE-MAX}"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Do you travel alone or with family?:",
+            "horizontalAlignment": "left"
+        },
+        {
+            "type": "Input.ChoiceSet",
+            "choices": [
+                {
+                    "title": "Alone",
+                    "value": "TravelAlone"
+                },
+                {
+                    "title": "With family",
+                    "value": "TravelWithFamily"
+                }
+            ],
+            "placeholder": "Do you travel alone or with family?",
+            "style": "expanded",
+            "isMultiSelect": false,
+            "id": "TravelAloneOrWithFamily"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Number of adults travelling with you:"
+        },
+        {
+            "type": "Input.ChoiceSet",
+            "id": "AdultsNumber",
+            "choices": [],
+            "value": "1",
+            "separator": false
+        },
+        {
+            "type": "TextBlock",
+            "text": "Number of children travelling with you:"
+        },
+        {
+            "type": "Input.ChoiceSet",
+            "id": "ChildrenNumber",
+            "choices": [],
+            "value": "0",
+            "separator": false
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Search",
+            "data": {
+                "msteams": {
+                    "type": "messageBack",
+                    "text": "search domestic flights card"
+                }
+            }
+        },
+        {
+            "type": "Action.Submit",
+            "title": "Cancel",
+            "data": {
+                "msteams": {
+                    "type": "messageBack",
+                    "text": "Cancel"
+                }
+            }
+        }
+    ]
+}

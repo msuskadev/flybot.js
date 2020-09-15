@@ -20,7 +20,9 @@
   "dependencies": {
     "axios": "^0.19.2",
     "botbuilder": "^4.7.2",
+    "botbuilder-dialogs": "^4.7.2",
     "dotenv": "^8.2.0",
+    "moment": "^2.24.0",
     "restify": "^8.5.1"
   },
   "devDependencies": {

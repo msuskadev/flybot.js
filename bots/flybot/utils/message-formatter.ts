@@ -27,8 +27,8 @@ export default class MessageFormatter {
         let result: string = '';
 
         route.forEach(r => {
-            result += `* **From:** ${r.flyFrom}, ${r.cityFrom} at ${new Date(r.departureTimeUTC * 1000).toLocaleTimeString()}\r\n` + 
-            `**To:** ${r.flyTo}, ${r.cityTo} at ${new Date(r.arrivalTimeUTC * 1000).toLocaleTimeString()}\r\n` +
+            result += `* **From:** ${r.flyFrom}, ${r.cityFrom} on ${new Date(r.departureTimeUTC * 1000).toLocaleDateString()} at ${new Date(r.departureTimeUTC * 1000).toLocaleTimeString()}\r\n` + 
+            `**To:** ${r.flyTo}, ${r.cityTo} on ${new Date(r.arrivalTimeUTC * 1000).toLocaleDateString()} at ${new Date(r.arrivalTimeUTC * 1000).toLocaleTimeString()}\r\n` +
             `**Flight No.:** ${r.airlineName}, ${r.airlineCode}${r.flight_no}\r\n` +
             `**Operator:**\r\n` + 
             `![](${r.airlineLogoSmall})\r\n`;

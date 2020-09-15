@@ -3,4 +3,7 @@ export default interface FlightModel {
     flyTo: string;
     dateFrom: string;
     dateTo: string;
+    adults?: number,
+    children?: number,
+    infants?: number 
 }
