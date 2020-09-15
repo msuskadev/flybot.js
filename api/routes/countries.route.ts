@@ -8,6 +8,7 @@ export default class CountriesRoutes {
 
     constructor () {
         this.router = express.Router();        
+        this.router.get(`${this.Path}`, this.countryController.getAllCountries);
         this.router.get(`${this.Path}/:countryCode`, this.countryController.checkCountry);
     }
 }

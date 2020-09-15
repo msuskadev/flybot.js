@@ -12,4 +12,14 @@ export default class AirportsController {
 
         return res.status(400).send(`Airport ${airportCode} doesn't exist`);
     }
+
+    public async getAllAirports(req: Request, res: Response) {    
+        const airports = new AirportsService().getAllAirports();
+        
+        if (airports) {
+            return res.send(airports);
+        }
+
+        return res.status(400).send(`Cannot get all airports`);
+    }
 }
