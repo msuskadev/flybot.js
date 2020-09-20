@@ -1,0 +1,303 @@
+{
+    "text": "\r\n\n\r\nfind for me some flight from WRO to JFK on Christmas Eve 2020\n\n",
+    "intents": {
+        "searchFlight": {
+            "score": 0.9949393
+        }
+    },
+    "entities": {
+        "Location": [
+            {
+                "AirportFrom": [
+                    "WRO"
+                ],
+                "$instance": {
+                    "AirportFrom": [
+                        {
+                            "type": "AirportFrom",
+                            "text": "WRO",
+                            "startIndex": 34,
+                            "endIndex": 37,
+                            "modelType": "Entity Extractor",
+                            "recognitionSources": [
+                                "model"
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "AirportTo": [
+                    "JFK"
+                ],
+                "$instance": {
+                    "AirportTo": [
+                        {
+                            "type": "AirportTo",
+                            "text": "JFK",
+                            "startIndex": 41,
+                            "endIndex": 44,
+                            "modelType": "Entity Extractor",
+                            "recognitionSources": [
+                                "model"
+                            ]
+                        }
+                    ]
+                }
+            }
+        ],
+        "keyPhrase": [
+            "flight",
+            "WRO",
+            "JFK",
+            "Christmas Eve"
+        ],
+        "datetime": [
+            {
+                "timex": [
+                    "2020-12-24"
+                ],
+                "type": "date"
+            }
+        ],
+        "$instance": {
+            "Location": [
+                {
+                    "type": "Location",
+                    "text": "WRO",
+                    "startIndex": 34,
+                    "endIndex": 37,
+                    "modelType": "Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                },
+                {
+                    "type": "Location",
+                    "text": "JFK",
+                    "startIndex": 41,
+                    "endIndex": 44,
+                    "modelType": "Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ],
+            "keyPhrase": [
+                {
+                    "type": "builtin.keyPhrase",
+                    "text": "flight",
+                    "startIndex": 22,
+                    "endIndex": 28,
+                    "modelType": "Prebuilt Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                },
+                {
+                    "type": "builtin.keyPhrase",
+                    "text": "WRO",
+                    "startIndex": 34,
+                    "endIndex": 37,
+                    "modelType": "Prebuilt Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                },
+                {
+                    "type": "builtin.keyPhrase",
+                    "text": "JFK",
+                    "startIndex": 41,
+                    "endIndex": 44,
+                    "modelType": "Prebuilt Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                },
+                {
+                    "type": "builtin.keyPhrase",
+                    "text": "Christmas Eve",
+                    "startIndex": 48,
+                    "endIndex": 61,
+                    "modelType": "Prebuilt Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ],
+            "datetime": [
+                {
+                    "type": "builtin.datetimeV2.date",
+                    "text": "Christmas Eve 2020",
+                    "startIndex": 48,
+                    "endIndex": 66,
+                    "modelType": "Prebuilt Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ]
+        }
+    },
+    "luisResult": {
+        "query": "\r\n\n\r\nfind for me some flight from WRO to JFK on Christmas Eve 2020\n\n",
+        "prediction": {
+            "topIntent": "searchFlight",
+            "intents": {
+                "searchFlight": {
+                    "score": 0.9949393
+                }
+            },
+            "entities": {
+                "Location": [
+                    {
+                        "AirportFrom": [
+                            "WRO"
+                        ],
+                        "$instance": {
+                            "AirportFrom": [
+                                {
+                                    "type": "AirportFrom",
+                                    "text": "WRO",
+                                    "startIndex": 34,
+                                    "length": 3,
+                                    "modelTypeId": 1,
+                                    "modelType": "Entity Extractor",
+                                    "recognitionSources": [
+                                        "model"
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "AirportTo": [
+                            "JFK"
+                        ],
+                        "$instance": {
+                            "AirportTo": [
+                                {
+                                    "type": "AirportTo",
+                                    "text": "JFK",
+                                    "startIndex": 41,
+                                    "length": 3,
+                                    "modelTypeId": 1,
+                                    "modelType": "Entity Extractor",
+                                    "recognitionSources": [
+                                        "model"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "keyPhrase": [
+                    "flight",
+                    "WRO",
+                    "JFK",
+                    "Christmas Eve"
+                ],
+                "datetimeV2": [
+                    {
+                        "type": "date",
+                        "values": [
+                            {
+                                "timex": "2020-12-24",
+                                "resolution": [
+                                    {
+                                        "value": "2020-12-24"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "$instance": {
+                    "Location": [
+                        {
+                            "type": "Location",
+                            "text": "WRO",
+                            "startIndex": 34,
+                            "length": 3,
+                            "modelTypeId": 1,
+                            "modelType": "Entity Extractor",
+                            "recognitionSources": [
+                                "model"
+                            ]
+                        },
+                        {
+                            "type": "Location",
+                            "text": "JFK",
+                            "startIndex": 41,
+                            "length": 3,
+                            "modelTypeId": 1,
+                            "modelType": "Entity Extractor",
+                            "recognitionSources": [
+                                "model"
+                            ]
+                        }
+                    ],
+                    "keyPhrase": [
+                        {
+                            "type": "builtin.keyPhrase",
+                            "text": "flight",
+                            "startIndex": 22,
+                            "length": 6,
+                            "modelTypeId": 2,
+                            "modelType": "Prebuilt Entity Extractor",
+                            "recognitionSources": [
+                                "model"
+                            ]
+                        },
+                        {
+                            "type": "builtin.keyPhrase",
+                            "text": "WRO",
+                            "startIndex": 34,
+                            "length": 3,
+                            "modelTypeId": 2,
+                            "modelType": "Prebuilt Entity Extractor",
+                            "recognitionSources": [
+                                "model"
+                            ]
+                        },
+                        {
+                            "type": "builtin.keyPhrase",
+                            "text": "JFK",
+                            "startIndex": 41,
+                            "length": 3,
+                            "modelTypeId": 2,
+                            "modelType": "Prebuilt Entity Extractor",
+                            "recognitionSources": [
+                                "model"
+                            ]
+                        },
+                        {
+                            "type": "builtin.keyPhrase",
+                            "text": "Christmas Eve",
+                            "startIndex": 48,
+                            "length": 13,
+                            "modelTypeId": 2,
+                            "modelType": "Prebuilt Entity Extractor",
+                            "recognitionSources": [
+                                "model"
+                            ]
+                        }
+                    ],
+                    "datetimeV2": [
+                        {
+                            "type": "builtin.datetimeV2.date",
+                            "text": "Christmas Eve 2020",
+                            "startIndex": 48,
+                            "length": 18,
+                            "modelTypeId": 2,
+                            "modelType": "Prebuilt Entity Extractor",
+                            "recognitionSources": [
+                                "model"
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
