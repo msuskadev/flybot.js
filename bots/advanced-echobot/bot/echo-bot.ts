@@ -4,8 +4,7 @@ export class EchoBot extends ActivityHandler {
     constructor() {
         super();
         
-        this.onMessage(async (context, next) => {
-            const message = MessageFactory.suggestedActions(['red', 'green', 'blue'], `Choose a color`);
+        this.onMessage(async (context, next) => {            
             const replyText = `Advanced echo: ${ context.activity.text }`;
             await context.sendActivity(MessageFactory.text(replyText));
             // Call the next continuation function from each handler to allow processing to continue. 
