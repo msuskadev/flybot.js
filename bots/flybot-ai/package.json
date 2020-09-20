@@ -1,0 +1,33 @@
+{
+  "name": "advanced-echobot",
+  "version": "1.0.0",
+  "description": "The advanced echobot written by using Microsoft Bot Framework demonstrated during Capgemini TechTalk III Special Edition in Wroclaw",
+  "main": "server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node ./dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msuskadev/flybot.js.git"
+  },
+  "author": "Mieczyslaw Suska",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/msuskadev/flybot.js/issues"
+  },
+  "homepage": "https://github.com/msuskadev/flybot.js#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "botbuilder": "^4.10.3",
+    "botbuilder-ai": "^4.10.3",
+    "botbuilder-dialogs": "^4.10.3",
+    "botframework-config": "^4.10.3",
+    "dotenv": "^8.2.0",
+    "moment": "^2.24.0",
+    "restify": "^8.5.1"
+  },
+  "devDependencies": {
+    "@types/restify": "^8.4.2"
+  }
+}
