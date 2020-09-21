@@ -9,6 +9,6 @@ RUN npm install
 RUN npm install typescript -g
 RUN npm run build
 
-EXPOSE 3980
+EXPOSE 3985
 
 CMD ["node", "/src/app/dist/server.js"]
