@@ -6,8 +6,44 @@
     "configurations": [
 
         {
-            "name": "Launch Program",
+            "name": "EchoBot",
+            "program": "${workspaceFolder}/bots/simple-echobot/server.ts",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node",
+        },
+        {
+            "name": "Message-bot-factory",
             "program": "${workspaceFolder}/bots/message-factory-bot/server.ts",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node",
+        },
+        {
+            "name": "Flybot",
+            "program": "${workspaceFolder}/bots/flybot/server.ts",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node",
+        },
+        {
+            "name": "Flybot-ai",
+            "program": "${workspaceFolder}/bots/flybot-ai/server.ts",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node",
+        },
+        {
+            "name": "Advanced EchoBot",
+            "program": "${workspaceFolder}/bots/advanced-echobot/server.ts",
             "request": "launch",
             "skipFiles": [
                 "<node_internals>/**"

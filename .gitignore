@@ -102,3 +102,8 @@ dist
 # TernJS port file
 .tern-port
 /api/dist
+/bots/advanced-echobot/.env
+/bots/flybot/.env
+/bots/simple-echobot/.env
+/bots/message-factory-bot/.env
+/bots/flybot-ai/.env

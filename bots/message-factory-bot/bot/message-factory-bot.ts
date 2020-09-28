@@ -18,10 +18,10 @@ export class MessageFactoryBot extends ActivityHandler {
                     await context.sendActivity({ attachments: [this.createHeroCard()] });
                     break;
                 }
-                case 'Receipt Card': {
+                /*case 'Receipt Card': {
                     await context.sendActivity({ attachments: [this.createReceiptCard()] });
                     break;
-                }                
+                }*/                
                 case 'Thumbnail Card': {
                     await context.sendActivity({ attachments: [this.createThumbnailCard()] });
                     break;
@@ -47,7 +47,7 @@ export class MessageFactoryBot extends ActivityHandler {
                 }
             }
             
-            const message = MessageFactory.suggestedActions(['Animation Card', 'Audio Card', 'Hero Card', 'Receipt Card', 'Thumbnail Card', 'Video Card', 'Message Factory Carousel', 'Message Factory List', 'Simple Text'], 'Select option');            
+            const message = MessageFactory.suggestedActions(['Animation Card', 'Audio Card', 'Hero Card', 'Thumbnail Card', 'Video Card', 'Message Factory Carousel', 'Message Factory List', 'Simple Text'], 'Select option');            
             await context.sendActivity(message);
 
             // Call the next continuation function from each handler to allow processing to continue. 
@@ -57,16 +57,8 @@ export class MessageFactoryBot extends ActivityHandler {
 
 
         this.onMembersAdded(async (context, next) => {
-            const membersAdded = context.activity.membersAdded;
-            if (!membersAdded) {
-                return;
-            }
-            const welcomeText = 'Hello and welcome to TechTalk Special Edition!';
-            for (const member of membersAdded) {
-                if (member.id !== context.activity.recipient.id) {
-                    await context.sendActivity(MessageFactory.text(welcomeText, welcomeText));
-                }
-            }
+            const message = MessageFactory.suggestedActions(['Animation Card', 'Audio Card', 'Hero Card', 'Thumbnail Card', 'Video Card', 'Message Factory Carousel', 'Message Factory List', 'Simple Text'], 'Select option');            
+                await context.sendActivities([ MessageFactory.text('Hello and welcome to Message And Card Factory Bot'), message]);
 
             // Call the next continuation function from each handler to allow processing to continue. 
             // If next is not called, processing of the activity ends.
@@ -229,32 +221,32 @@ export class MessageFactoryBot extends ActivityHandler {
 
     private createThumbnailCard() {
         return CardFactory.thumbnailCard(
-            'BotFramework Thumbnail Card',
-            [{ url: 'https://sec.ch9.ms/ch9/7ff5/e07cfef0-aa3b-40bb-9baa-7c9ef8ff7ff5/buildreactionbotframework_960.jpg' }],
+            'Trek Madone SLR9 2021',
+            [{ url: 'https://sprint-rowery.pl/media/catalog/product/cache/eecd74defa3b5f8d0d4b60fa62f6a89b/r/o/rower-szosowy-trek-madone-slr9-niebieski-01_1.jpg' }],
             [{
-                title: 'Get started',
+                title: 'Buy now',
                 type: 'openUrl',
-                value: 'https://docs.microsoft.com/en-us/azure/bot-service/'
+                value: 'https://www.trekbikes.com/pl/pl_PL/'
             }],
             {
-                subtitle: 'Your bots — wherever your users are talking.',
-                text: 'Build and connect intelligent bots to interact with your users naturally wherever they are, from text/sms to Skype, Slack, Office 365 mail and other popular services.'
+                subtitle: 'AERO BIKE',
+                text: `Madone SLR 9 Disc eTap pairs the aerodynamics and ride quality of an all-new 800 Series OCLV Carbon frame with the smoothness of SRAM's most advanced electronic drivetrain, RED eTap AXS. It's the first-ever wireless electronic groupset with a 12-speed cassette. Saddle up for the quickest and smartest shifting of your life.`
             }
         );
     }
 
     private createVideoCard() {
         return CardFactory.videoCard(
-            'Downhill mountain biking',
-            [{ url: 'https://vod-progressive.akamaized.net/exp=1600734906~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F3671%2F17%2F443359663%2F1941961370.mp4~hmac=af8da16e927f2c8cb9f0e68a65b1ec0d93c078ef97f2ec24ac899a3e5c032a04/vimeo-prod-skyfire-std-us/01/3671/17/443359663/1941961370.mp4?filename=GH010345.mp4' }],
+            'Cycling',
+            [{ url: 'https://vod-progressive.akamaized.net/exp=1601255595~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F4097%2F17%2F445487490%2F1953279316.mp4~hmac=68b1952ca36ebf788f05e8d4faa8254a2f07f370b4637450282666d13cc35c23/vimeo-prod-skyfire-std-us/01/4097/17/445487490/1953279316.mp4?filename=CANYON_35EC_16x9_TITLED_MASTER.mp4' }],
             [{
                 title: 'Lean More',
                 type: 'openUrl',
-                value: 'https://en.wikipedia.org/wiki/Downhill_mountain_biking'
+                value: 'https://en.wikipedia.org/wiki/Cycling'
             }],
             {
                 subtitle: 'from Wikipedia',
-                text: 'Downhill mountain biking (DH) is a genre of mountain biking practiced on steep, rough terrain that often features jumps, drops, rock gardens and other obstacles.'
+                text: 'Cycling, also called bicycling or biking, is the use of bicycles for transport, recreation, exercise or sport.[1] People engaged in cycling are referred to as "cyclists",[2] "bicyclists",[3] or "bikers".[4] Apart from two-wheeled bicycles, "cycling" also includes the riding of unicycles, tricycles, quadracycles, recumbent and similar human-powered vehicles (HPVs).'
             }
         );
     }

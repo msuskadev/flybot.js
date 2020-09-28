@@ -14,11 +14,6 @@ const adapter = new BotFrameworkAdapter({
 });
 
 server.post('/api/messages', (req, res) => {
-    /*const message = MessageFactory.suggestedActions(['red', 'green', 'blue'], `Choose a color`);
-    adapter.processActivity(req, res, async (context) => { 
-        await context.sendActivity(message);
-    });*/
-
     adapter.processActivity(req, res, async (context) => { 
         await context.sendActivity(`Echo: ${context.activity.text}`);
     });
