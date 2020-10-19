@@ -25,7 +25,7 @@ export class AiBot extends ActivityHandler {
             const result = await this.luisRecognizer.recognize(context);
             const flightModel = await this.prepareFlightModel(result);
             // for DEMO Purpose only
-            context.sendActivity(MessageFactory.text(JSON.stringify(result)));                      
+            await context.sendActivity(MessageFactory.text(JSON.stringify(result)));                      
             await this.formatAnswer(context, flightModel);
             await next();
         });        

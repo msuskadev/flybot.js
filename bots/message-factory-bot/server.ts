@@ -1,11 +1,11 @@
 import * as resify from 'restify';
-import { CardFactory, MessageFactory } from 'botbuilder-core';
 import { BotFrameworkAdapter } from 'botbuilder';
 import { config } from 'dotenv';
 import { resolve } from 'path';
+import { MessageFactoryBot } from './bot/message-factory-bot';
 
 config({ path: resolve(__dirname, '..', '.env') })
-const echoBotPort = process.env.EchoBotPort || 3900; 
+const messageFactoryBotPort = process.env.MessageFactoryBotPort || 3900; 
 const server = resify.createServer();
 
 const adapter = new BotFrameworkAdapter({
@@ -13,12 +13,13 @@ const adapter = new BotFrameworkAdapter({
     appPassword: process.env.MicrosoftAppPassword
 });
 
+const messageFactoryBot = new MessageFactoryBot();
 server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async (context) => { 
-        await context.sendActivity(`Echo: ${context.activity.text}`);
+        await messageFactoryBot.run(context);
     });
 });
 
-server.listen(process.env.EchoBotPort, () => {
-    console.log(`Server is listening on port ${echoBotPort}`);
+server.listen(process.env.MessageFactoryBotPort, () => {
+    console.log(`Server is listening on port ${messageFactoryBotPort}`);
 });
