@@ -1,23 +1,23 @@
 {
-    "text": "\r\n\n\r\nfind for me some flight from WRO to JFK on Christmas Eve 2020\n\n",
+    "text": "hello bot, i need a ticket from Wroclaw to Barcelona on next friday",
     "intents": {
         "searchFlight": {
-            "score": 0.9949393
+            "score": 0.9945186
         }
     },
     "entities": {
         "Location": [
             {
-                "AirportFrom": [
-                    "WRO"
+                "CityFrom": [
+                    "Wroclaw"
                 ],
                 "$instance": {
-                    "AirportFrom": [
+                    "CityFrom": [
                         {
-                            "type": "AirportFrom",
-                            "text": "WRO",
-                            "startIndex": 34,
-                            "endIndex": 37,
+                            "type": "CityFrom",
+                            "text": "Wroclaw",
+                            "startIndex": 32,
+                            "endIndex": 39,
                             "modelType": "Entity Extractor",
                             "recognitionSources": [
                                 "model"
@@ -27,16 +27,16 @@
                 }
             },
             {
-                "AirportTo": [
-                    "JFK"
+                "CityTo": [
+                    "Barcelona"
                 ],
                 "$instance": {
-                    "AirportTo": [
+                    "CityTo": [
                         {
-                            "type": "AirportTo",
-                            "text": "JFK",
-                            "startIndex": 41,
-                            "endIndex": 44,
+                            "type": "CityTo",
+                            "text": "Barcelona",
+                            "startIndex": 43,
+                            "endIndex": 52,
                             "modelType": "Entity Extractor",
                             "recognitionSources": [
                                 "model"
@@ -47,15 +47,25 @@
             }
         ],
         "keyPhrase": [
-            "flight",
-            "WRO",
-            "JFK",
-            "Christmas Eve"
+            "bot",
+            "ticket",
+            "Wroclaw",
+            "Barcelona"
+        ],
+        "geographyV2": [
+            {
+                "location": "Wroclaw",
+                "type": "city"
+            },
+            {
+                "location": "Barcelona",
+                "type": "city"
+            }
         ],
         "datetime": [
             {
                 "timex": [
-                    "2020-12-24"
+                    "2020-10-09"
                 ],
                 "type": "date"
             }
@@ -64,9 +74,9 @@
             "Location": [
                 {
                     "type": "Location",
-                    "text": "WRO",
-                    "startIndex": 34,
-                    "endIndex": 37,
+                    "text": "Wroclaw",
+                    "startIndex": 32,
+                    "endIndex": 39,
                     "modelType": "Entity Extractor",
                     "recognitionSources": [
                         "model"
@@ -74,9 +84,9 @@
                 },
                 {
                     "type": "Location",
-                    "text": "JFK",
-                    "startIndex": 41,
-                    "endIndex": 44,
+                    "text": "Barcelona",
+                    "startIndex": 43,
+                    "endIndex": 52,
                     "modelType": "Entity Extractor",
                     "recognitionSources": [
                         "model"
@@ -86,9 +96,9 @@
             "keyPhrase": [
                 {
                     "type": "builtin.keyPhrase",
-                    "text": "flight",
-                    "startIndex": 22,
-                    "endIndex": 28,
+                    "text": "bot",
+                    "startIndex": 6,
+                    "endIndex": 9,
                     "modelType": "Prebuilt Entity Extractor",
                     "recognitionSources": [
                         "model"
@@ -96,9 +106,9 @@
                 },
                 {
                     "type": "builtin.keyPhrase",
-                    "text": "WRO",
-                    "startIndex": 34,
-                    "endIndex": 37,
+                    "text": "ticket",
+                    "startIndex": 20,
+                    "endIndex": 26,
                     "modelType": "Prebuilt Entity Extractor",
                     "recognitionSources": [
                         "model"
@@ -106,9 +116,9 @@
                 },
                 {
                     "type": "builtin.keyPhrase",
-                    "text": "JFK",
-                    "startIndex": 41,
-                    "endIndex": 44,
+                    "text": "Wroclaw",
+                    "startIndex": 32,
+                    "endIndex": 39,
                     "modelType": "Prebuilt Entity Extractor",
                     "recognitionSources": [
                         "model"
@@ -116,9 +126,31 @@
                 },
                 {
                     "type": "builtin.keyPhrase",
-                    "text": "Christmas Eve",
-                    "startIndex": 48,
-                    "endIndex": 61,
+                    "text": "Barcelona",
+                    "startIndex": 43,
+                    "endIndex": 52,
+                    "modelType": "Prebuilt Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ],
+            "geographyV2": [
+                {
+                    "type": "builtin.geographyV2.city",
+                    "text": "Wroclaw",
+                    "startIndex": 32,
+                    "endIndex": 39,
+                    "modelType": "Prebuilt Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                },
+                {
+                    "type": "builtin.geographyV2.city",
+                    "text": "Barcelona",
+                    "startIndex": 43,
+                    "endIndex": 52,
                     "modelType": "Prebuilt Entity Extractor",
                     "recognitionSources": [
                         "model"
@@ -128,9 +160,9 @@
             "datetime": [
                 {
                     "type": "builtin.datetimeV2.date",
-                    "text": "Christmas Eve 2020",
-                    "startIndex": 48,
-                    "endIndex": 66,
+                    "text": "next friday",
+                    "startIndex": 56,
+                    "endIndex": 67,
                     "modelType": "Prebuilt Entity Extractor",
                     "recognitionSources": [
                         "model"
@@ -140,27 +172,27 @@
         }
     },
     "luisResult": {
-        "query": "\r\n\n\r\nfind for me some flight from WRO to JFK on Christmas Eve 2020\n\n",
+        "query": "hello bot, i need a ticket from Wroclaw to Barcelona on next friday",
         "prediction": {
             "topIntent": "searchFlight",
             "intents": {
                 "searchFlight": {
-                    "score": 0.9949393
+                    "score": 0.9945186
                 }
             },
             "entities": {
                 "Location": [
                     {
-                        "AirportFrom": [
-                            "WRO"
+                        "CityFrom": [
+                            "Wroclaw"
                         ],
                         "$instance": {
-                            "AirportFrom": [
+                            "CityFrom": [
                                 {
-                                    "type": "AirportFrom",
-                                    "text": "WRO",
-                                    "startIndex": 34,
-                                    "length": 3,
+                                    "type": "CityFrom",
+                                    "text": "Wroclaw",
+                                    "startIndex": 32,
+                                    "length": 7,
                                     "modelTypeId": 1,
                                     "modelType": "Entity Extractor",
                                     "recognitionSources": [
@@ -171,16 +203,16 @@
                         }
                     },
                     {
-                        "AirportTo": [
-                            "JFK"
+                        "CityTo": [
+                            "Barcelona"
                         ],
                         "$instance": {
-                            "AirportTo": [
+                            "CityTo": [
                                 {
-                                    "type": "AirportTo",
-                                    "text": "JFK",
-                                    "startIndex": 41,
-                                    "length": 3,
+                                    "type": "CityTo",
+                                    "text": "Barcelona",
+                                    "startIndex": 43,
+                                    "length": 9,
                                     "modelTypeId": 1,
                                     "modelType": "Entity Extractor",
                                     "recognitionSources": [
@@ -192,20 +224,30 @@
                     }
                 ],
                 "keyPhrase": [
-                    "flight",
-                    "WRO",
-                    "JFK",
-                    "Christmas Eve"
+                    "bot",
+                    "ticket",
+                    "Wroclaw",
+                    "Barcelona"
+                ],
+                "geographyV2": [
+                    {
+                        "value": "Wroclaw",
+                        "type": "city"
+                    },
+                    {
+                        "value": "Barcelona",
+                        "type": "city"
+                    }
                 ],
                 "datetimeV2": [
                     {
                         "type": "date",
                         "values": [
                             {
-                                "timex": "2020-12-24",
+                                "timex": "2020-10-09",
                                 "resolution": [
                                     {
-                                        "value": "2020-12-24"
+                                        "value": "2020-10-09"
                                     }
                                 ]
                             }
@@ -216,9 +258,9 @@
                     "Location": [
                         {
                             "type": "Location",
-                            "text": "WRO",
-                            "startIndex": 34,
-                            "length": 3,
+                            "text": "Wroclaw",
+                            "startIndex": 32,
+                            "length": 7,
                             "modelTypeId": 1,
                             "modelType": "Entity Extractor",
                             "recognitionSources": [
@@ -227,9 +269,9 @@
                         },
                         {
                             "type": "Location",
-                            "text": "JFK",
-                            "startIndex": 41,
-                            "length": 3,
+                            "text": "Barcelona",
+                            "startIndex": 43,
+                            "length": 9,
                             "modelTypeId": 1,
                             "modelType": "Entity Extractor",
                             "recognitionSources": [
@@ -240,8 +282,19 @@
                     "keyPhrase": [
                         {
                             "type": "builtin.keyPhrase",
-                            "text": "flight",
-                            "startIndex": 22,
+                            "text": "bot",
+                            "startIndex": 6,
+                            "length": 3,
+                            "modelTypeId": 2,
+                            "modelType": "Prebuilt Entity Extractor",
+                            "recognitionSources": [
+                                "model"
+                            ]
+                        },
+                        {
+                            "type": "builtin.keyPhrase",
+                            "text": "ticket",
+                            "startIndex": 20,
                             "length": 6,
                             "modelTypeId": 2,
                             "modelType": "Prebuilt Entity Extractor",
@@ -251,9 +304,9 @@
                         },
                         {
                             "type": "builtin.keyPhrase",
-                            "text": "WRO",
-                            "startIndex": 34,
-                            "length": 3,
+                            "text": "Wroclaw",
+                            "startIndex": 32,
+                            "length": 7,
                             "modelTypeId": 2,
                             "modelType": "Prebuilt Entity Extractor",
                             "recognitionSources": [
@@ -262,9 +315,22 @@
                         },
                         {
                             "type": "builtin.keyPhrase",
-                            "text": "JFK",
-                            "startIndex": 41,
-                            "length": 3,
+                            "text": "Barcelona",
+                            "startIndex": 43,
+                            "length": 9,
+                            "modelTypeId": 2,
+                            "modelType": "Prebuilt Entity Extractor",
+                            "recognitionSources": [
+                                "model"
+                            ]
+                        }
+                    ],
+                    "geographyV2": [
+                        {
+                            "type": "builtin.geographyV2.city",
+                            "text": "Wroclaw",
+                            "startIndex": 32,
+                            "length": 7,
                             "modelTypeId": 2,
                             "modelType": "Prebuilt Entity Extractor",
                             "recognitionSources": [
@@ -272,10 +338,10 @@
                             ]
                         },
                         {
-                            "type": "builtin.keyPhrase",
-                            "text": "Christmas Eve",
-                            "startIndex": 48,
-                            "length": 13,
+                            "type": "builtin.geographyV2.city",
+                            "text": "Barcelona",
+                            "startIndex": 43,
+                            "length": 9,
                             "modelTypeId": 2,
                             "modelType": "Prebuilt Entity Extractor",
                             "recognitionSources": [
@@ -286,9 +352,9 @@
                     "datetimeV2": [
                         {
                             "type": "builtin.datetimeV2.date",
-                            "text": "Christmas Eve 2020",
-                            "startIndex": 48,
-                            "length": 18,
+                            "text": "next friday",
+                            "startIndex": 56,
+                            "length": 11,
                             "modelTypeId": 2,
                             "modelType": "Prebuilt Entity Extractor",
                             "recognitionSources": [

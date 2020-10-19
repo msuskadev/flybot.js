@@ -237,16 +237,16 @@ export class MessageFactoryBot extends ActivityHandler {
 
     private createVideoCard() {
         return CardFactory.videoCard(
-            'Cycling',
-            [{ url: 'https://vod-progressive.akamaized.net/exp=1601255595~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F4097%2F17%2F445487490%2F1953279316.mp4~hmac=68b1952ca36ebf788f05e8d4faa8254a2f07f370b4637450282666d13cc35c23/vimeo-prod-skyfire-std-us/01/4097/17/445487490/1953279316.mp4?filename=CANYON_35EC_16x9_TITLED_MASTER.mp4' }],
+            '2018 Imagine Cup World Championship Intro',
+            [{ url: 'https://sec.ch9.ms/ch9/783d/d57287a5-185f-4df9-aa08-fcab699a783d/IC18WorldChampionshipIntro2.mp4' }],
             [{
-                title: 'Lean More',
                 type: 'openUrl',
-                value: 'https://en.wikipedia.org/wiki/Cycling'
+                title: 'Learn More',
+                value: 'https://channel9.msdn.com/Events/Imagine-Cup/World-Finals-2018/2018-Imagine-Cup-World-Championship-Intro'
             }],
             {
-                subtitle: 'from Wikipedia',
-                text: 'Cycling, also called bicycling or biking, is the use of bicycles for transport, recreation, exercise or sport.[1] People engaged in cycling are referred to as "cyclists",[2] "bicyclists",[3] or "bikers".[4] Apart from two-wheeled bicycles, "cycling" also includes the riding of unicycles, tricycles, quadracycles, recumbent and similar human-powered vehicles (HPVs).'
+                subtitle: 'by Microsoft',
+                text: 'Microsoft\'s Imagine Cup has empowered student developers around the world to create and innovate on the world stage for the past 16 years. These innovations will shape how we live, work and play.'
             }
         );
     }
