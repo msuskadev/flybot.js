@@ -1,0 +1,41 @@
+{
+  "type": "ColumnSet",
+  "columns": [
+    {
+      "type": "Column",
+      "width": 1,
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "{departureTime} {departureCityFrom}, {departureFlyFrom}",
+          "isSubtle": true,
+          "horizontalAlignment": "center"
+        },
+        {
+          "type": "TextBlock",
+          "text": "",
+          "spacing": "medium",
+          "horizontalAlignment": "center"
+        },
+        {
+          "type": "Image",
+          "url": "{airlineLogo}",
+          "size": "small",    
+          "horizontalAlignment": "center"
+        },
+        {
+          "type": "TextBlock",
+          "text": "{airlineCode} {flight_no}",
+          "size": "small",
+          "horizontalAlignment": "center"
+        },
+        {
+            "type": "TextBlock",
+            "text": "{arrivalTime} {arrivalCityTo}, {arrivalFlyTo}",
+            "isSubtle": true,
+            "horizontalAlignment": "center"
+        } 
+      ]
+    }
+  ]
+}
