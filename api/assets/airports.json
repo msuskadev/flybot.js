@@ -2454,6 +2454,12 @@
         "city": "Gander"
     },
     {
+        "iata": "SYD",
+        "country": "AU",
+        "name": "Sydney Kingsford Smith International Airport",
+        "city": "Sydney"
+    },
+    {
         "iata": "YQY",
         "country": "CA",
         "name": "Sydney / J.A. Douglas McCurdy Airport",
@@ -2878,6 +2884,12 @@
         "country": "CA",
         "name": "Terrace Airport",
         "city": "Terrace"
+    },
+    {
+        "iata": "LHR",
+        "country": "GB",
+        "name": "London Heathrow Airport",
+        "city": "London"
     },
     {
         "iata": "YXU",
@@ -5242,12 +5254,6 @@
         "country": "GB",
         "name": "Blackbushe Airport",
         "city": "Yateley"
-    },
-    {
-        "iata": "LHR",
-        "country": "GB",
-        "name": "London Heathrow Airport",
-        "city": "London"
     },
     {
         "iata": "SEN",
@@ -38446,12 +38452,6 @@
         "country": "AU",
         "name": "Strahan Airport",
         "city": ""
-    },
-    {
-        "iata": "SYD",
-        "country": "AU",
-        "name": "Sydney Kingsford Smith International Airport",
-        "city": "Sydney"
     },
     {
         "iata": "HLS",

@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
 
+
         {
             "name": "EchoBot",
             "program": "${workspaceFolder}/bots/simple-echobot/server.ts",
@@ -35,6 +36,15 @@
         {
             "name": "Flybot-ai",
             "program": "${workspaceFolder}/bots/flybot-ai/server.ts",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node",
+        },
+        {
+            "name": "Flybot-JSPoland",
+            "program": "${workspaceFolder}/bots/flybot-jspoland/server.ts",
             "request": "launch",
             "skipFiles": [
                 "<node_internals>/**"
