@@ -1,5 +1,5 @@
 import { AttachmentLayoutTypes, ActionTypes, CardFactory, ActivityHandler, MessageFactory, RecognizerResult, TurnContext } from 'botbuilder';
-import { LuisApplication, LuisRecognizer } from 'botbuilder-ai';
+import { LuisApplication, LuisRecognizer, QnAMaker } from 'botbuilder-ai';
 import FlyBotService from '../services/flybot.service';
 import FlightModel from '../models/flight.model';
 import moment from 'moment';
@@ -11,6 +11,7 @@ import TripHelper from '../utils/trip-helper';
 export class FlyBot extends ActivityHandler {
     private flybotService: FlyBotService; 
     private luisRecognizer: LuisRecognizer;
+    private qnaMaker: QnAMaker;
     
     constructor() {
         super();    
@@ -20,22 +21,34 @@ export class FlyBot extends ActivityHandler {
             endpoint: process.env.LuisAPIHostName,
             endpointKey: process.env.LuisAPIKey || ''
         };
+
+        this.qnaMaker = new QnAMaker({
+            knowledgeBaseId: process.env.QnAKnowledgebaseId || '',
+            endpointKey: process.env.QnAEndpointKey || '',
+            host: process.env.QnAEndpointHostName || ''
+        });
+
         const recognizerOptions = {
             apiVersion: 'v3'
         };
 
         this.luisRecognizer = new LuisRecognizer(luisApplication, recognizerOptions);        
 
-        this.onMessage(async (context: TurnContext, next) => {                        
+        this.onMessage(async (context: TurnContext, next) => {                          
             const luisResult = await this.luisRecognizer.recognize(context);
             
-            const flightModel = await this.prepareFlightModel(luisResult);
-            // for DEMO Purpose only
-            await context.sendActivities([MessageFactory.text(JSON.stringify(luisResult, null, 2)),
-                MessageFactory.text(JSON.stringify(flightModel, null, 2))
-            ]);                      
-            //await context.sendActivity(MessageFactory.text(JSON.stringify(flightModel)));                      
-            //await this.formatAnswer(context, flightModel);
+            if (luisResult.intents.SearchFlight) {            
+                const flightModel = await this.prepareFlightModel(luisResult);
+                await context.sendActivities([MessageFactory.text(JSON.stringify(luisResult, null, 2)),
+                    MessageFactory.text(JSON.stringify(flightModel, null, 2))                
+                ]);
+            } else if (luisResult.intents.FAQ) {
+                const qnaResults = await this.qnaMaker.getAnswers(context);
+                const answer = qnaResults[0] ? qnaResults[0].answer : '';
+                await context.sendActivities([MessageFactory.text(JSON.stringify(qnaResults, null, 2)),
+                    MessageFactory.text(JSON.stringify(answer, null, 2))]);
+            }
+                                              
             await next();
         });        
     }
